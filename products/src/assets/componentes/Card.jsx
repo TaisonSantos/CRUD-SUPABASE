@@ -1,19 +1,33 @@
-export function Card({ id, nome, valor, estoque, remover, imagem }) {
+export function Card({
+  id,
+  nome,
+  valor,
+  estoque,
+  remover,
+  imagem
+}) {
+
   return (
+
     <div className="bg-white rounded-xl shadow-md border border-slate-200 p-4 hover:shadow-lg transition">
 
       <div className="flex gap-4 items-center">
 
-        {/* Imagem */}
+        {/* IMAGEM */}
+
         <div className="w-[90px] h-[90px] flex items-center justify-center bg-slate-100 rounded-lg overflow-hidden shrink-0">
+
           <img
             src={imagem}
             alt={nome}
             className="max-w-[70px] max-h-[70px] object-contain"
           />
+
         </div>
 
-        {/* Informações */}
+
+        {/* INFORMAÇÕES */}
+
         <div className="flex-1">
 
           <p className="text-xs text-slate-400">
@@ -36,7 +50,9 @@ export function Card({ id, nome, valor, estoque, remover, imagem }) {
 
       </div>
 
-      {/* Botões */}
+
+      {/* BOTÕES */}
+
       <div className="flex gap-2 mt-4">
 
         <button
@@ -55,5 +71,6 @@ export function Card({ id, nome, valor, estoque, remover, imagem }) {
       </div>
 
     </div>
+
   );
 }
