@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Home } from "./assets/pages/Home";
 import { Login } from "./assets/pages/Login";
 import { Cadastro } from "./assets/pages/Cadastro";
@@ -12,6 +15,8 @@ import {
 } from "./assets/services/produtosServices";
 
 import { supabase } from "./assets/supabaseClient";
+
+import { ClipLoader } from "react-spinners";
 
 
 function App() {
@@ -75,11 +80,14 @@ function App() {
     });
 
     if (error) {
+     
       console.error("Erro ao remover produto:", error);
+      toast.error("Erro ao Remover produto!");
       return;
     }
 
     // Atualiza a lista depois de remover
+    toast.success("Produto Removido com sucesso!");
     await fetchProdutos();
   }
 
@@ -98,10 +106,11 @@ function App() {
 
     if (error) {
       console.error("Erro ao cadastrar produto:", error);
+      toast.error("Erro ao cadastrar produto!");
       return;
     }
 
-    console.log("Produto cadastrado:", data);
+    toast.success("Produto cadastrado com sucesso!");
 
     // Limpa o formulário
     setForm({
@@ -163,8 +172,9 @@ function App() {
       return;
     }
 
-    console.log("Usuário logado:", data.user);
-
+    toast.success("Usuario Logado com Sucesso");
+    
+    
     setUsuario(data.user);
   }
 
@@ -181,7 +191,7 @@ function App() {
       console.error("Erro ao deslogar:", error);
       return;
     }
-
+    toast.success("Usuario Deslogado com Sucesso");
     setUsuario(null);
   }
 
@@ -256,8 +266,16 @@ function App() {
   // ========================================
 
   return (
+    <>
+    <ToastContainer
+      autoClose={2000}
+
+    />
+    
+
 
     <Routes>
+      
 
       {/* HOME */}
 
@@ -317,6 +335,7 @@ function App() {
       />
 
     </Routes>
+    </>
   );
 }
 
